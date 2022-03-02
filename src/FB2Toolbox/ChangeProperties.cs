@@ -44,7 +44,7 @@ namespace FB2Toolbox
                 bookNumberText.Value = info.BookSequenceNr.HasValue ? info.BookSequenceNr.Value : 0;
             }
             bookTitleCheck.Enabled = filesCount <= 1;
-            Text = "Изменить метаданные " + (filesCount > 1 ? string.Format("({0} файлов)", filesCount) : "(один файл)");
+            Text = "Изменить метаданные " + (filesCount > 1 ? string.Format("({0} файлов)", filesCount, System.Globalization.CultureInfo.CurrentCulture) : "(один файл)");
         }
         public FileProperties GetFileProperties()
         {

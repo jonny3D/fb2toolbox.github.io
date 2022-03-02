@@ -104,13 +104,9 @@ namespace FB2Toolbox
             openFileDialog.InitialDirectory = Properties.Settings.Default.DefaultAddFiltesPath;
             if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                InProgress = true;
                 Properties.Settings.Default.DefaultAddFiltesPath = openFileDialog.InitialDirectory;
                 Properties.Settings.Default.Save();
-                var _listOfFiles = ReadListOfFiles(openFileDialog.FileNames);
-                AddItemsToList(_listOfFiles);
-                InProgress = false;
-                UpdateStatus();
+                AddFiles(openFileDialog.FileNames);
             }
         }
         private void AddErrorRN(string message)
@@ -988,6 +984,15 @@ namespace FB2Toolbox
             }
         }
 
+        private void AddFiles(string[] fileNames)
+        {
+            InProgress = true;
+            var _listOfFiles = ReadListOfFiles(fileNames);
+            AddItemsToList(_listOfFiles);
+            InProgress = false;
+            UpdateStatus();
+        }
+
         private string GetGroupName(FB2File item, int typeGroup = 0)
         {
             string seq = string.Empty;
@@ -1072,5 +1077,18 @@ namespace FB2Toolbox
 
             filesView.EndUpdate();
         }
+
+        private void filesView_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+        }
+
+        private void filesView_DragDrop(object sender, DragEventArgs e)
+        {
+            var _files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            AddFiles(_files);
+        }
+
     }
 }
