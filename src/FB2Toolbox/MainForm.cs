@@ -77,7 +77,113 @@ namespace FB2Toolbox
                 }
             }
         }
-        private List<FB2File> ReadListOfFiles(string[] fileNames)
+        #region File menu events
+
+        private void addFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog.InitialDirectory = Properties.Settings.Default.DefaultAddFiltesPath;
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Properties.Settings.Default.DefaultAddFiltesPath = openFileDialog.InitialDirectory;
+                Properties.Settings.Default.Save();
+                AddFiles(openFileDialog.FileNames);
+            }
+        }
+
+        private void addFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog.SelectedPath = Properties.Settings.Default.DefaultAddFolderPath;
+            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                bool recursive = true;
+                ToolStripMenuItem item = sender as ToolStripMenuItem;
+                if (item != null)
+                    recursive = Convert.ToBoolean(item.Tag);
+
+                Properties.Settings.Default.DefaultAddFolderPath = folderBrowserDialog.SelectedPath;
+                Properties.Settings.Default.Save();
+                AddDir(folderBrowserDialog.SelectedPath, recursive);
+            }
+        }
+
+        private void AddFiles(string[] files)
+        {
+            InProgress = true;
+            var _files = ImportFiles(files);
+            AddItemsToList(_files);
+            InProgress = false;
+            UpdateStatus();
+        }
+
+        private void AddDir(string dir, bool recursive)
+        {
+            InProgress = true;
+            var _files = ReadFolder(dir, recursive);
+            if (_files != null && _files.Count > 0) AddItemsToList(_files);
+            InProgress = false;
+            UpdateStatus();
+        }
+
+        private List<FB2File> ReadFolder(string folder, bool recursive)
+        {
+            if (IsCancel || !Directory.Exists(folder))
+                return null;
+
+            var result = new List<FB2File>();
+            var dirInfo = new DirectoryInfo(folder);
+
+            UpdateStatus(String.Format(Properties.Resources.ProgressScanFolder, dirInfo.FullName));
+            try
+            {
+                FileInfo[] files = dirInfo.GetFiles("*" + FB2Config.Current.FB2Extension);
+                FileInfo[] zipFiles = dirInfo.GetFiles("*" + FB2Config.Current.FB2ZIPExtension);
+                if (files.Length > 0)
+                {
+                    List<string> list = new List<string>();
+                    foreach (FileInfo fi in files)
+                    {
+                        list.Add(fi.FullName);
+                    }
+                    var fclist = ImportFiles(list.ToArray());
+                    result.AddRange(fclist);
+                }
+                
+                if (IsCancel)
+                    return null;
+
+                if (zipFiles.Length > 0)
+                {
+                    List<string> list = new List<string>();
+                    foreach (FileInfo fi in zipFiles)
+                    {
+                        list.Add(fi.FullName);
+                    }
+                    var fclist = ImportFiles(list.ToArray());
+                    result.AddRange(fclist);
+                }
+                
+                if (IsCancel)
+                    return null;
+
+                if (recursive)
+                {
+                    DirectoryInfo[] directories = dirInfo.GetDirectories();
+                    foreach (DirectoryInfo di in directories)
+                    {
+                        List<FB2File> _result = ReadFolder(di.FullName, recursive);
+                        if (_result != null && _result.Count > 0) result.AddRange(_result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                AddErrorRN(ex.Message);
+            }
+
+            return result;
+        }
+
+        private List<FB2File> ImportFiles(string[] fileNames)
         {
             List<FB2File> containers = new List<FB2File>();
             foreach (string fileName in fileNames)
@@ -99,16 +205,29 @@ namespace FB2Toolbox
             }
             return containers;
         }
-        private void addFilesToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void filesView_DragEnter(object sender, DragEventArgs e)
         {
-            openFileDialog.InitialDirectory = Properties.Settings.Default.DefaultAddFiltesPath;
-            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                Properties.Settings.Default.DefaultAddFiltesPath = openFileDialog.InitialDirectory;
-                Properties.Settings.Default.Save();
-                AddFiles(openFileDialog.FileNames);
-            }
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
         }
+
+        private void filesView_DragDrop(object sender, DragEventArgs e)
+        {
+            var _list = (string[])e.Data.GetData(DataFormats.FileDrop);
+            var _files = new List<string>();
+            var _dirs= new List<string>();
+            foreach (var fi in _list)
+            {
+                if (File.Exists(fi)) _files.Add(fi);
+                else if (Directory.Exists(fi)) _dirs.Add(fi);
+            }
+            if (_files.Count > 0) AddFiles(_files.ToArray());
+            if (_dirs.Count > 0) foreach (var dir in _dirs) AddDir(dir, true);
+        }
+
+        #endregion
+
         private void AddErrorRN(string message)
         {
             System.Drawing.Color prevColor = messagesTextBox.SelectionColor;
@@ -226,77 +345,12 @@ namespace FB2Toolbox
             if (MessageBox.Show(Properties.Resources.ConfirmationClearFileList, Properties.Resources.ConfirmationCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 ClearLists();
         }
-        private void AddFolder(DirectoryInfo folder, List<FB2File> containers, bool recursive)
-        {
-            if (IsCancel)
-                return;
-            UpdateStatus(String.Format(Properties.Resources.ProgressScanFolder, folder.FullName));
-            try
-            {
-                FileInfo[] files = folder.GetFiles("*" + FB2Config.Current.FB2Extension);
-                FileInfo[] zipFiles = folder.GetFiles("*" + FB2Config.Current.FB2ZIPExtension);
-                if (files.Length > 0)
-                {
-                    List<string> list = new List<string>();
-                    foreach (FileInfo fi in files)
-                    {
-                        list.Add(fi.FullName);
-                    }
-                    var fclist = ReadListOfFiles(list.ToArray());
-                    containers.AddRange(fclist);
-                }
-                if (IsCancel)
-                    return;
-                if (zipFiles.Length > 0)
-                {
-                    List<string> list = new List<string>();
-                    foreach (FileInfo fi in zipFiles)
-                    {
-                        list.Add(fi.FullName);
-                    }
-                    var fclist = ReadListOfFiles(list.ToArray());
-                    containers.AddRange(fclist);
-                }
-                if (IsCancel)
-                    return;
-                if (recursive)
-                {
-                    DirectoryInfo[] folders = folder.GetDirectories();
-                    foreach (DirectoryInfo di in folders)
-                    {
-                        AddFolder(di, containers, recursive);
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                AddErrorRN(ex.Message);
-            }
-        }
         private void UpdateStatus()
         {
             statusLabel.Text = String.Empty;
             statusSelectedFilesLabel.Text = String.Format(Properties.Resources.StatusBarFilesCount, SelectedCount, filesView.Items.Count);
         }
-        private void addFolderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            folderBrowserDialog.SelectedPath = Properties.Settings.Default.DefaultAddFolderPath;
-            if (folderBrowserDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                bool recursive = true;
-                ToolStripMenuItem item = sender as ToolStripMenuItem;
-                if (item != null)
-                    recursive = Convert.ToBoolean(item.Tag);
-                InProgress = true;
-                Properties.Settings.Default.DefaultAddFolderPath = folderBrowserDialog.SelectedPath;
-                Properties.Settings.Default.Save();
-                List<FB2File> list = new List<FB2File>();
-                AddFolder(new DirectoryInfo(folderBrowserDialog.SelectedPath), list, recursive);
-                AddItemsToList(list);
-                InProgress = false;
-                UpdateStatus();
-            }
-        }
+        
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = InProgress;
@@ -984,15 +1038,6 @@ namespace FB2Toolbox
             }
         }
 
-        private void AddFiles(string[] fileNames)
-        {
-            InProgress = true;
-            var _listOfFiles = ReadListOfFiles(fileNames);
-            AddItemsToList(_listOfFiles);
-            InProgress = false;
-            UpdateStatus();
-        }
-
         private string GetGroupName(FB2File item, int typeGroup = 0)
         {
             string seq = string.Empty;
@@ -1077,18 +1122,5 @@ namespace FB2Toolbox
 
             filesView.EndUpdate();
         }
-
-        private void filesView_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-                e.Effect = DragDropEffects.Copy;
-        }
-
-        private void filesView_DragDrop(object sender, DragEventArgs e)
-        {
-            var _files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            AddFiles(_files);
-        }
-
     }
 }
