@@ -217,6 +217,8 @@ namespace FB2Toolbox
             var _list = (string[])e.Data.GetData(DataFormats.FileDrop);
             var _files = new List<string>();
             var _dirs= new List<string>();
+            if (filesView.Items.Count > 0 && MessageBox.Show(Properties.Resources.ConfirmationClearFileList, Properties.Resources.ConfirmationCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                ClearLists();
             foreach (var fi in _list)
             {
                 if (File.Exists(fi)) _files.Add(fi);
