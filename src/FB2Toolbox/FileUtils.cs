@@ -645,9 +645,7 @@ namespace FB2Toolbox
                 if (fileName.ToLower().EndsWith(FB2Config.Current.FB2ZIPExtension))
                 {
                     Encoding zipEncoding = Encoding.GetEncoding(FB2Config.Current.Encodings.CompressionEncoding);
-                    ReadOptions options = new ReadOptions();
-                    options.Encoding = zipEncoding;
-                    using (ZipFile zip = ZipFile.Read(fileName, options))
+                    using (ZipFile zip = ZipFile.Read(fileName, new ReadOptions() { Encoding = Encoding.GetEncoding(866) }))
                     {
                         if (zip.Count <= 0)
                         {
@@ -896,6 +894,10 @@ namespace FB2Toolbox
             DirectoryInfo di = FileInformation.Directory;
             FileOperationResult result = new FileOperationResult() { NewFileName = newFileName, NewFullName = newFullName };
             result.Skipped = IsSkipFile(newFullName, newFileName);
+            if (!result.Skipped && FileInformation.FullName == newFullName)
+            {
+                result.Skipped = true;
+            }
             if (!result.Skipped)
             {
                 if (File.Exists(newFullName))
@@ -929,9 +931,7 @@ namespace FB2Toolbox
             {
                 fileName = fileName.Substring(0, fileName.Length - FB2Config.Current.FB2ZIPExtension.Length) + FB2Config.Current.FB2Extension;
                 Encoding zipEncoding = Encoding.GetEncoding(FB2Config.Current.Encodings.CompressionEncoding);
-                ReadOptions options = new ReadOptions();
-                options.Encoding = zipEncoding;
-                using (ZipFile zip = ZipFile.Read(FileInformation.FullName, options))
+                using (ZipFile zip = ZipFile.Read(FileInformation.FullName, new ReadOptions() { Encoding = Encoding.GetEncoding(866) }))
                 {
                     zip[0].Extract(FileInformation.Directory.FullName, ExtractExistingFileAction.Throw);
                     fileName = Path.Combine(FileInformation.Directory.FullName, zip[0].FileName);
@@ -1228,9 +1228,7 @@ namespace FB2Toolbox
                 {
                     string inZipFileName = String.Empty;
                     Encoding zipEncoding = Encoding.GetEncoding(FB2Config.Current.Encodings.CompressionEncoding);
-                    ReadOptions options = new ReadOptions();
-                    options.Encoding = zipEncoding;
-                    using (ZipFile zip = ZipFile.Read(FileInformation.FullName, options))
+                    using (ZipFile zip = ZipFile.Read(FileInformation.FullName, new ReadOptions() { Encoding = Encoding.GetEncoding(866) }))
                     {
                         inZipFileName = zip[0].FileName;
                     }
@@ -1280,9 +1278,7 @@ namespace FB2Toolbox
                 {
                     string inZipFileName = String.Empty;
                     Encoding zipEncoding = Encoding.GetEncoding(FB2Config.Current.Encodings.CompressionEncoding);
-                    ReadOptions options = new ReadOptions();
-                    options.Encoding = zipEncoding;
-                    using (ZipFile zip = ZipFile.Read(FileInformation.FullName, options))
+                    using (ZipFile zip = ZipFile.Read(FileInformation.FullName, new ReadOptions() { Encoding = Encoding.GetEncoding(866) }))
                     {
                         inZipFileName = zip[0].FileName;
                     }
