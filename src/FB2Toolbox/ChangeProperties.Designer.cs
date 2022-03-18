@@ -218,7 +218,7 @@
             this.bookNumberText.BackColor = System.Drawing.SystemColors.ControlLight;
             this.bookNumberText.Location = new System.Drawing.Point(117, 75);
             this.bookNumberText.Maximum = new decimal(new int[] {
-            900,
+            3000,
             0,
             0,
             0});
