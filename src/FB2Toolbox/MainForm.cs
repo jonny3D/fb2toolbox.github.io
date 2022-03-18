@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Xml;
+using System.Linq;
 
 namespace FB2Toolbox
 {
@@ -532,12 +533,26 @@ namespace FB2Toolbox
                         return;
                     }
                 }
+
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.CreateNoWindow = command.CreateNoWindow;
                 startInfo.FileName = command.FileName;
                 startInfo.UseShellExecute = false;
                 commandString = String.Format(command.Arguments, fc.FileInformation.FullName);
                 startInfo.Arguments = commandString;
+
+                if (startInfo.FileName.IndexOf("\\") < 0 && startInfo.FileName.IndexOf("/") < 0)
+                {
+                    var enviromentPath = System.Environment.GetEnvironmentVariable("PATH");
+                    var paths = enviromentPath.Split(';');
+                    var exePath = paths.Select(x => Path.Combine(x, startInfo.FileName))
+                                       .Where(x => File.Exists(x))
+                                       .FirstOrDefault();
+                    if (exePath != null)
+                    {
+                        startInfo.FileName = exePath;
+                    }
+                }
 
                 AddMessageRN(String.Format(Properties.Resources.ExecuteCommand, command.FileName, commandString));
                 using (Process exeProcess = Process.Start(startInfo))
