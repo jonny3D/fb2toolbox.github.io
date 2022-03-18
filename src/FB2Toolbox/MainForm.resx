@@ -180,8 +180,77 @@
   <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>532, 17</value>
   </metadata>
+  <data name="viewDescriptionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 22</value>
+  </data>
+  <data name="viewDescriptionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Описание...</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 6</value>
+  </data>
+  <data name="openFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 22</value>
+  </data>
+  <data name="openFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Открыть файл...</value>
+  </data>
+  <data name="openSelectFileMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 22</value>
+  </data>
+  <data name="openSelectFileMenuItem.Text" xml:space="preserve">
+    <value>Выбрать файл в Проводнике...</value>
+  </data>
+  <data name="openFolderMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 22</value>
+  </data>
+  <data name="openFolderMenuItem.Text" xml:space="preserve">
+    <value>Выбрать каталог в Проводнике...</value>
+  </data>
+  <data name="removeSingleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 22</value>
+  </data>
+  <data name="removeSingleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Скрыть</value>
+  </data>
+  <data name="deleteSingleToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Del</value>
+  </data>
+  <data name="deleteSingleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 22</value>
+  </data>
+  <data name="deleteSingleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 6</value>
+  </data>
+  <data name="metadataSingleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 22</value>
+  </data>
+  <data name="metadataSingleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Изменить метаданные...</value>
+  </data>
+  <data name="toolStripMenuItem9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 6</value>
+  </data>
+  <data name="commandContextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 22</value>
+  </data>
+  <data name="commandContextToolStripMenuItem.Text" xml:space="preserve">
+    <value>Команды</value>
+  </data>
+  <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 6</value>
+  </data>
+  <data name="reloadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>255, 22</value>
+  </data>
+  <data name="reloadToolStripMenuItem.Text" xml:space="preserve">
+    <value>Считать заново</value>
+  </data>
   <data name="contextMenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 182</value>
+    <value>256, 226</value>
   </data>
   <data name="&gt;&gt;contextMenuStrip1.Name" xml:space="preserve">
     <value>contextMenuStrip1</value>
@@ -209,7 +278,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABu
-        DQAAAk1TRnQBSQFMAgEBAwEAASQBAgEkAQIBEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        DQAAAk1TRnQBSQFMAgEBAwEAATQBAgE0AQIBEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABEAMAAQEBAAEYBgABDCcAA/gD7wLkAeMB2QHYAdYB1wHWAdQD+QP+GAAD/QP6A/IC6AHnAd4B3QHb
         Ad4B3AHaA/wMAAP/A94CrgGtAbACrwPIA/xLAAL6AfkB5AHgAdkBywHHAb8ByQHCAbYB1AHMAbkB6AHd
         AcMB/gHxAdIB/gHyAdMB/wHyAdMB/gHzAdQB/wHyAdUB/wH7Ad0BxQG9AbID4gP8AwAC+gH5AewB5wHf
@@ -365,60 +434,6 @@
   <data name="&gt;&gt;mainSplitContainer.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="viewDescriptionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
-  </data>
-  <data name="viewDescriptionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Описание...</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 6</value>
-  </data>
-  <data name="openFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
-  </data>
-  <data name="openFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Открыть файл...</value>
-  </data>
-  <data name="openSelectFileMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
-  </data>
-  <data name="openSelectFileMenuItem.Text" xml:space="preserve">
-    <value>Выбрать файл в Проводнике...</value>
-  </data>
-  <data name="openFolderMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
-  </data>
-  <data name="openFolderMenuItem.Text" xml:space="preserve">
-    <value>Выбрать каталог в Проводнике...</value>
-  </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 6</value>
-  </data>
-  <data name="metadataSingleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
-  </data>
-  <data name="metadataSingleToolStripMenuItem.Text" xml:space="preserve">
-    <value>Изменить метаданные...</value>
-  </data>
-  <data name="toolStripMenuItem9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 6</value>
-  </data>
-  <data name="commandContextToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
-  </data>
-  <data name="commandContextToolStripMenuItem.Text" xml:space="preserve">
-    <value>Команды</value>
-  </data>
-  <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 6</value>
-  </data>
-  <data name="reloadToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 22</value>
-  </data>
-  <data name="reloadToolStripMenuItem.Text" xml:space="preserve">
-    <value>Считать заново</value>
-  </data>
   <metadata name="menuMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
@@ -427,6 +442,87 @@
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Список</value>
+  </data>
+  <data name="encodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 22</value>
+  </data>
+  <data name="encodeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Перекодировать в</value>
+  </data>
+  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 6</value>
+  </data>
+  <data name="copyToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 22</value>
+  </data>
+  <data name="copyToToolStripMenuItem.Text" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="moveToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 22</value>
+  </data>
+  <data name="moveToToolStripMenuItem.Text" xml:space="preserve">
+    <value>Переместить</value>
+  </data>
+  <data name="renameInPlaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 22</value>
+  </data>
+  <data name="renameInPlaceToolStripMenuItem.Text" xml:space="preserve">
+    <value>Переименовать на месте</value>
+  </data>
+  <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 6</value>
+  </data>
+  <data name="compressToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 22</value>
+  </data>
+  <data name="compressToolStripMenuItem.Text" xml:space="preserve">
+    <value>Архивировать...</value>
+  </data>
+  <data name="extractToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 22</value>
+  </data>
+  <data name="extractToolStripMenuItem.Text" xml:space="preserve">
+    <value>Распаковать...</value>
+  </data>
+  <data name="removeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 22</value>
+  </data>
+  <data name="removeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Скрыть...</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 22</value>
+  </data>
+  <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
+    <value>Удалить...</value>
+  </data>
+  <data name="toolStripMenuItem8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 6</value>
+  </data>
+  <data name="toolStripEditBooks.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 22</value>
+  </data>
+  <data name="toolStripEditBooks.Text" xml:space="preserve">
+    <value>Изменить метаданные...</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 6</value>
+  </data>
+  <data name="validateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 22</value>
+  </data>
+  <data name="validateToolStripMenuItem.Text" xml:space="preserve">
+    <value>Тестировать...</value>
+  </data>
+  <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 6</value>
+  </data>
+  <data name="commandsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>212, 22</value>
+  </data>
+  <data name="commandsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Команды</value>
   </data>
   <data name="actionsToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -442,36 +538,6 @@
   </data>
   <data name="otherToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Прочее</value>
-  </data>
-  <data name="view1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="view1ToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Фамилия: Серия</value>
-  </data>
-  <data name="view2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="view2ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Фамилия: &amp;Название</value>
-  </data>
-  <data name="view5ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="view5ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Серия</value>
-  </data>
-  <data name="view3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="view3ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Серия: Фамилия</value>
-  </data>
-  <data name="view4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
-  </data>
-  <data name="view4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>Серия: Название</value>
   </data>
   <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>39, 20</value>
@@ -563,75 +629,6 @@
   <data name="uncheckAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Снять все отметки</value>
   </data>
-  <data name="encodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
-  </data>
-  <data name="encodeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Перекодировать в</value>
-  </data>
-  <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
-  </data>
-  <data name="copyToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
-  </data>
-  <data name="copyToToolStripMenuItem.Text" xml:space="preserve">
-    <value>Копировать</value>
-  </data>
-  <data name="moveToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
-  </data>
-  <data name="moveToToolStripMenuItem.Text" xml:space="preserve">
-    <value>Переместить</value>
-  </data>
-  <data name="renameInPlaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
-  </data>
-  <data name="renameInPlaceToolStripMenuItem.Text" xml:space="preserve">
-    <value>Переименовать на месте</value>
-  </data>
-  <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
-  </data>
-  <data name="compressToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
-  </data>
-  <data name="compressToolStripMenuItem.Text" xml:space="preserve">
-    <value>Архивировать...</value>
-  </data>
-  <data name="extractToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
-  </data>
-  <data name="extractToolStripMenuItem.Text" xml:space="preserve">
-    <value>Распаковать...</value>
-  </data>
-  <data name="toolStripMenuItem8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
-  </data>
-  <data name="toolStripEditBooks.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
-  </data>
-  <data name="toolStripEditBooks.Text" xml:space="preserve">
-    <value>Изменить метаданные...</value>
-  </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
-  </data>
-  <data name="validateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
-  </data>
-  <data name="validateToolStripMenuItem.Text" xml:space="preserve">
-    <value>Тестировать...</value>
-  </data>
-  <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
-  </data>
-  <data name="commandsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
-  </data>
-  <data name="commandsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Команды</value>
-  </data>
   <data name="renameAllZIPTofFB2ZIPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 22</value>
   </data>
@@ -643,6 +640,36 @@
   </data>
   <data name="createGuidToolStripMenuItem.Text" xml:space="preserve">
     <value>Создать идентификатор...</value>
+  </data>
+  <data name="view1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="view1ToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Фамилия: Серия</value>
+  </data>
+  <data name="view2ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="view2ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Фамилия: &amp;Название</value>
+  </data>
+  <data name="view5ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="view5ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Серия</value>
+  </data>
+  <data name="view3ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="view3ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Серия: Фамилия</value>
+  </data>
+  <data name="view4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="view4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Серия: Название</value>
   </data>
   <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>127, 17</value>
@@ -1941,6 +1968,12 @@
   <data name="&gt;&gt;openFolderMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;deleteSingleToolStripMenuItem.Name" xml:space="preserve">
+    <value>deleteSingleToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;deleteSingleToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripMenuItem2.Name" xml:space="preserve">
     <value>toolStripMenuItem2</value>
   </data>
@@ -2097,6 +2130,12 @@
   <data name="&gt;&gt;extractToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;deleteToolStripMenuItem.Name" xml:space="preserve">
+    <value>deleteToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;deleteToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripMenuItem8.Name" xml:space="preserve">
     <value>toolStripMenuItem8</value>
   </data>
@@ -2163,16 +2202,22 @@
   <data name="&gt;&gt;view1ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;view3ToolStripMenuItem.Name" xml:space="preserve">
-    <value>view3ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;view3ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;view2ToolStripMenuItem.Name" xml:space="preserve">
     <value>view2ToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;view2ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;view5ToolStripMenuItem.Name" xml:space="preserve">
+    <value>view5ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;view5ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;view3ToolStripMenuItem.Name" xml:space="preserve">
+    <value>view3ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;view3ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;view4ToolStripMenuItem.Name" xml:space="preserve">
@@ -2211,10 +2256,16 @@
   <data name="&gt;&gt;folderBrowserDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;view5ToolStripMenuItem.Name" xml:space="preserve">
-    <value>view5ToolStripMenuItem</value>
+  <data name="&gt;&gt;removeToolStripMenuItem.Name" xml:space="preserve">
+    <value>removeToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;view5ToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;removeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;removeSingleToolStripMenuItem.Name" xml:space="preserve">
+    <value>removeSingleToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;removeSingleToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

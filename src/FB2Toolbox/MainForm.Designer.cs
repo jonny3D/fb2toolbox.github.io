@@ -48,6 +48,7 @@
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectFileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFolderMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSingleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.metadataSingleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
@@ -76,6 +77,7 @@
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.compressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripEditBooks = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -87,8 +89,9 @@
             this.createGuidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.view1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.view3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.view2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.view5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.view3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.view4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -96,7 +99,8 @@
             this.statusSelectedFilesLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.view5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeSingleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
@@ -202,6 +206,8 @@
             this.openFileToolStripMenuItem,
             this.openSelectFileMenuItem,
             this.openFolderMenuItem,
+            this.removeSingleToolStripMenuItem,
+            this.deleteSingleToolStripMenuItem,
             this.toolStripMenuItem2,
             this.metadataSingleToolStripMenuItem,
             this.toolStripMenuItem9,
@@ -241,6 +247,12 @@
             this.openFolderMenuItem.Name = "openFolderMenuItem";
             resources.ApplyResources(this.openFolderMenuItem, "openFolderMenuItem");
             this.openFolderMenuItem.Click += new System.EventHandler(this.openFolderMenuItem_Click);
+            // 
+            // deleteSingleToolStripMenuItem
+            // 
+            this.deleteSingleToolStripMenuItem.Name = "deleteSingleToolStripMenuItem";
+            resources.ApplyResources(this.deleteSingleToolStripMenuItem, "deleteSingleToolStripMenuItem");
+            this.deleteSingleToolStripMenuItem.Click += new System.EventHandler(this.deleteSingleToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -382,6 +394,8 @@
             this.toolStripMenuItem6,
             this.compressToolStripMenuItem,
             this.extractToolStripMenuItem,
+            this.removeToolStripMenuItem,
+            this.deleteToolStripMenuItem,
             this.toolStripMenuItem8,
             this.toolStripEditBooks,
             this.toolStripSeparator2,
@@ -432,6 +446,12 @@
             this.extractToolStripMenuItem.Name = "extractToolStripMenuItem";
             resources.ApplyResources(this.extractToolStripMenuItem, "extractToolStripMenuItem");
             this.extractToolStripMenuItem.Click += new System.EventHandler(this.extractToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripMenuItem8
             // 
@@ -506,14 +526,6 @@
             this.view1ToolStripMenuItem.Tag = "0";
             this.view1ToolStripMenuItem.Click += new System.EventHandler(this.view1ToolStripMenuItem_Click);
             // 
-            // view3ToolStripMenuItem
-            // 
-            this.view3ToolStripMenuItem.CheckOnClick = true;
-            this.view3ToolStripMenuItem.Name = "view3ToolStripMenuItem";
-            resources.ApplyResources(this.view3ToolStripMenuItem, "view3ToolStripMenuItem");
-            this.view3ToolStripMenuItem.Tag = "2";
-            this.view3ToolStripMenuItem.Click += new System.EventHandler(this.view1ToolStripMenuItem_Click);
-            // 
             // view2ToolStripMenuItem
             // 
             this.view2ToolStripMenuItem.CheckOnClick = true;
@@ -521,6 +533,21 @@
             resources.ApplyResources(this.view2ToolStripMenuItem, "view2ToolStripMenuItem");
             this.view2ToolStripMenuItem.Tag = "1";
             this.view2ToolStripMenuItem.Click += new System.EventHandler(this.view1ToolStripMenuItem_Click);
+            // 
+            // view5ToolStripMenuItem
+            // 
+            this.view5ToolStripMenuItem.Name = "view5ToolStripMenuItem";
+            resources.ApplyResources(this.view5ToolStripMenuItem, "view5ToolStripMenuItem");
+            this.view5ToolStripMenuItem.Tag = "4";
+            this.view5ToolStripMenuItem.Click += new System.EventHandler(this.view1ToolStripMenuItem_Click);
+            // 
+            // view3ToolStripMenuItem
+            // 
+            this.view3ToolStripMenuItem.CheckOnClick = true;
+            this.view3ToolStripMenuItem.Name = "view3ToolStripMenuItem";
+            resources.ApplyResources(this.view3ToolStripMenuItem, "view3ToolStripMenuItem");
+            this.view3ToolStripMenuItem.Tag = "2";
+            this.view3ToolStripMenuItem.Click += new System.EventHandler(this.view1ToolStripMenuItem_Click);
             // 
             // view4ToolStripMenuItem
             // 
@@ -567,12 +594,17 @@
             // 
             resources.ApplyResources(this.folderBrowserDialog, "folderBrowserDialog");
             // 
-            // view5ToolStripMenuItem
+            // removeToolStripMenuItem
             // 
-            this.view5ToolStripMenuItem.Name = "view5ToolStripMenuItem";
-            resources.ApplyResources(this.view5ToolStripMenuItem, "view5ToolStripMenuItem");
-            this.view5ToolStripMenuItem.Tag = "4";
-            this.view5ToolStripMenuItem.Click += new System.EventHandler(this.view1ToolStripMenuItem_Click);
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            resources.ApplyResources(this.removeToolStripMenuItem, "removeToolStripMenuItem");
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            // 
+            // removeSingleToolStripMenuItem
+            // 
+            this.removeSingleToolStripMenuItem.Name = "removeSingleToolStripMenuItem";
+            resources.ApplyResources(this.removeSingleToolStripMenuItem, "removeSingleToolStripMenuItem");
+            this.removeSingleToolStripMenuItem.Click += new System.EventHandler(this.removeSingleToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -670,6 +702,10 @@
         private System.Windows.Forms.ColumnHeader columnFileSize;
         private System.Windows.Forms.ColumnHeader columnVersion;
         private System.Windows.Forms.ToolStripMenuItem view5ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSingleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeSingleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
     }
 }
 

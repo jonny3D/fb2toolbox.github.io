@@ -766,7 +766,7 @@ namespace FB2Toolbox
             fn = SubstituteCharacters(FB2Config.Current.RenameProfiles.GlobalCharacterSubstitution, fn);
             return fn;
         }
-        protected void RemoveFolder(DirectoryInfo folder)
+        public static void RemoveFolder(DirectoryInfo folder)
         {
             try
             {
@@ -775,8 +775,10 @@ namespace FB2Toolbox
                 if (NativeMethods.CheckDirectoryEmpty_Fast(folder.FullName))
                 {
                     folder.Delete();
-                    if(folder.FullName != folder.Root.FullName)
+                    if (folder.FullName != folder.Root.FullName)
+                    {
                         RemoveFolder(folder.Parent);
+                    }
                 }
             }
             catch

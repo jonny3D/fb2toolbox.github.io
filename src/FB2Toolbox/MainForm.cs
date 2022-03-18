@@ -1139,5 +1139,80 @@ namespace FB2Toolbox
 
             filesView.EndUpdate();
         }
+
+        private void deleteSingleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (filesView.FocusedItem != null)
+            {
+                FB2File fc = filesView.FocusedItem.Tag as FB2File;
+                if (MessageBox.Show(String.Format(Properties.Resources.ConfirmationDeleteFile, fc.FileInformation.Name), Properties.Resources.ConfirmationCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.No)
+                    return;
+                DeleteFile(filesView.FocusedItem);
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(String.Format(Properties.Resources.ConfirmationDelete, SelectedCount), Properties.Resources.ConfirmationCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                InProgress = true;
+                foreach (ListViewItem item in filesView.CheckedItems)
+                {
+                    DeleteFile(item);
+                    if (CheckCancel())
+                        break;
+                }
+                InProgress = false;
+            }
+        }
+
+        private void DeleteFile(ListViewItem item)
+        {
+            FB2File fc = item.Tag as FB2File;
+            if (fc != null)
+            {
+                File.Delete(fc.FileInformation.FullName);
+                string path = Path.GetDirectoryName(fc.FileInformation.FullName);
+                FB2File.RemoveFolder(new DirectoryInfo(path));
+                if (!File.Exists(fc.FileInformation.FullName))
+                {
+                    if (item.Checked) SelectedCount--;
+                    filesView.Items.Remove(item);
+                    LoadedFileIDs.Remove(fc.FileInformation.FullName);
+                }
+            }
+        }
+
+        private void removeSingleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (filesView.FocusedItem != null)
+            {
+                FB2File fc = filesView.FocusedItem.Tag as FB2File;
+                if (MessageBox.Show(String.Format(Properties.Resources.ConfirmationRemoveFile, fc.FileInformation.Name), Properties.Resources.ConfirmationCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.No)
+                    return;
+                if (fc != null)
+                {
+                    if (filesView.FocusedItem.Checked) SelectedCount--;
+                    filesView.Items.Remove(filesView.FocusedItem);
+                    LoadedFileIDs.Remove(fc.FileInformation.FullName);
+                }
+            }
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(String.Format(Properties.Resources.ConfirmationRemove, SelectedCount), Properties.Resources.ConfirmationCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                InProgress = true;
+                foreach (ListViewItem item in filesView.CheckedItems)
+                {
+                    FB2File fc = item.Tag as FB2File;
+                    if (item.Checked) SelectedCount--;
+                    filesView.Items.Remove(item);
+                    LoadedFileIDs.Remove(fc.FileInformation.FullName);
+                }
+                InProgress = false;
+            }
+        }
     }
 }

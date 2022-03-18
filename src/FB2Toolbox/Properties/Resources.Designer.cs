@@ -97,6 +97,24 @@ namespace FB2Toolbox.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Вы уверены что хотите удалить {0} файл(ов)?.
+        /// </summary>
+        internal static string ConfirmationDelete {
+            get {
+                return ResourceManager.GetString("ConfirmationDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вы уверены что хотите удалить файл &apos;{0}&apos;?.
+        /// </summary>
+        internal static string ConfirmationDeleteFile {
+            get {
+                return ResourceManager.GetString("ConfirmationDeleteFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Вы уверены что хотите распаковать {0} файл(ов)?.
         /// </summary>
         internal static string ConfirmationExtract {
@@ -111,6 +129,24 @@ namespace FB2Toolbox.Properties {
         internal static string ConfirmationRecode {
             get {
                 return ResourceManager.GetString("ConfirmationRecode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вы уверены что хотите скрыть {0} файл(ов)?.
+        /// </summary>
+        internal static string ConfirmationRemove {
+            get {
+                return ResourceManager.GetString("ConfirmationRemove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вы уверены что хотите скрыть файл &apos;{0}&apos;?.
+        /// </summary>
+        internal static string ConfirmationRemoveFile {
+            get {
+                return ResourceManager.GetString("ConfirmationRemoveFile", resourceCulture);
             }
         }
         
