@@ -893,11 +893,8 @@ namespace FB2Toolbox
             Directory.CreateDirectory(newPath);
             DirectoryInfo di = FileInformation.Directory;
             FileOperationResult result = new FileOperationResult() { NewFileName = newFileName, NewFullName = newFullName };
-            result.Skipped = IsSkipFile(newFullName, newFileName);
-            if (!result.Skipped && FileInformation.FullName == newFullName)
-            {
-                result.Skipped = true;
-            }
+            result.Skipped = FileInformation.FullName == newFullName || IsSkipFile(newFullName, newFileName);
+
             if (!result.Skipped)
             {
                 if (File.Exists(newFullName))
