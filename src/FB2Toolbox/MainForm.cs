@@ -1058,33 +1058,28 @@ namespace FB2Toolbox
         private string GetGroupName(FB2File item, int typeGroup = 0)
         {
             string seq = string.Empty;
-            if (typeGroup == 0)
+            switch(typeGroup)
             {
-                seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
-                seq = String.IsNullOrEmpty(item.BookAuthorLastName) ? seq : item.BookAuthorLastName + ": " + seq;
-                return seq;
-            }
-            else
-                if (typeGroup == 1)
-                {
+                case 0:
+                    seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
+                    seq = String.IsNullOrEmpty(item.BookAuthorLastName) ? seq : item.BookAuthorLastName + ": " + seq;
+                    return seq;
+                case 1:
                     seq = item.BookTitle;
                     seq = String.IsNullOrEmpty(item.BookAuthorLastName) ? seq : item.BookAuthorLastName + ": " + seq;
                     return seq;
-                }
-                else
-                    if (typeGroup == 2)
-                    {
-                        seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
-                        seq = String.IsNullOrEmpty(item.BookAuthorLastName) ? seq : seq + ": " + item.BookAuthorLastName;
-                        return seq;
-                    }
-                    else
-                        if (typeGroup == 3)
-                        {
-                            seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
-                            seq = seq + ": " + item.BookTitle;
-                            return seq;
-                        }
+                case 2:
+                    seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
+                    seq = String.IsNullOrEmpty(item.BookAuthorLastName) ? seq : seq + ": " + item.BookAuthorLastName;
+                    return seq;
+                case 3:
+                    seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
+                    seq = seq + ": " + item.BookTitle;
+                    return seq;
+                case 4:
+                    seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
+                    return seq;
+            }
             return seq;
         }
 
@@ -1099,6 +1094,8 @@ namespace FB2Toolbox
                 o = view3ToolStripMenuItem.Tag;
             if (view4ToolStripMenuItem.CheckState == CheckState.Checked)
                 o = view4ToolStripMenuItem.Tag;
+            if (view5ToolStripMenuItem.CheckState == CheckState.Checked)
+                o = view5ToolStripMenuItem.Tag;
             return Convert.ToInt32(o);
         }
 
@@ -1121,6 +1118,7 @@ namespace FB2Toolbox
             view2ToolStripMenuItem.CheckState = CheckState.Unchecked;
             view3ToolStripMenuItem.CheckState = CheckState.Unchecked;
             view4ToolStripMenuItem.CheckState = CheckState.Unchecked;
+            view5ToolStripMenuItem.CheckState = CheckState.Unchecked;
             if (Convert.ToInt32(view1ToolStripMenuItem.Tag) == groupType)
                 view1ToolStripMenuItem.CheckState = CheckState.Checked;
             if (Convert.ToInt32(view2ToolStripMenuItem.Tag) == groupType)
@@ -1129,6 +1127,8 @@ namespace FB2Toolbox
                 view3ToolStripMenuItem.CheckState = CheckState.Checked;
             if (Convert.ToInt32(view4ToolStripMenuItem.Tag) == groupType)
                 view4ToolStripMenuItem.CheckState = CheckState.Checked;
+            if (Convert.ToInt32(view5ToolStripMenuItem.Tag) == groupType)
+                view5ToolStripMenuItem.CheckState = CheckState.Checked;
 
             filesView.BeginUpdate();
             filesView.Groups.Clear();
