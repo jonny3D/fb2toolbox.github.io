@@ -48,6 +48,7 @@
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSelectFileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFolderMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeSingleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSingleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.metadataSingleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,6 +78,7 @@
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.compressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripEditBooks = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,8 +101,9 @@
             this.statusSelectedFilesLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeSingleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
@@ -248,6 +251,12 @@
             resources.ApplyResources(this.openFolderMenuItem, "openFolderMenuItem");
             this.openFolderMenuItem.Click += new System.EventHandler(this.openFolderMenuItem_Click);
             // 
+            // removeSingleToolStripMenuItem
+            // 
+            this.removeSingleToolStripMenuItem.Name = "removeSingleToolStripMenuItem";
+            resources.ApplyResources(this.removeSingleToolStripMenuItem, "removeSingleToolStripMenuItem");
+            this.removeSingleToolStripMenuItem.Click += new System.EventHandler(this.removeSingleToolStripMenuItem_Click);
+            // 
             // deleteSingleToolStripMenuItem
             // 
             this.deleteSingleToolStripMenuItem.Name = "deleteSingleToolStripMenuItem";
@@ -324,6 +333,9 @@
             this.clearFilesListMenuItem,
             this.clearLogOnlyToolStripMenuItem,
             this.toolStripMenuItem4,
+            this.filterToolStripMenuItem,
+            this.clearFilterToolStripMenuItem,
+            this.toolStripMenuItem10,
             this.checkAllToolStripMenuItem,
             this.uncheckAllToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -446,6 +458,12 @@
             this.extractToolStripMenuItem.Name = "extractToolStripMenuItem";
             resources.ApplyResources(this.extractToolStripMenuItem, "extractToolStripMenuItem");
             this.extractToolStripMenuItem.Click += new System.EventHandler(this.extractToolStripMenuItem_Click);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            resources.ApplyResources(this.removeToolStripMenuItem, "removeToolStripMenuItem");
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -594,17 +612,22 @@
             // 
             resources.ApplyResources(this.folderBrowserDialog, "folderBrowserDialog");
             // 
-            // removeToolStripMenuItem
+            // filterToolStripMenuItem
             // 
-            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            resources.ApplyResources(this.removeToolStripMenuItem, "removeToolStripMenuItem");
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.removeToolStripMenuItem_Click);
+            this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
+            resources.ApplyResources(this.filterToolStripMenuItem, "filterToolStripMenuItem");
+            this.filterToolStripMenuItem.Click += new System.EventHandler(this.filterToolStripMenuItem_Click);
             // 
-            // removeSingleToolStripMenuItem
+            // clearFilterToolStripMenuItem
             // 
-            this.removeSingleToolStripMenuItem.Name = "removeSingleToolStripMenuItem";
-            resources.ApplyResources(this.removeSingleToolStripMenuItem, "removeSingleToolStripMenuItem");
-            this.removeSingleToolStripMenuItem.Click += new System.EventHandler(this.removeSingleToolStripMenuItem_Click);
+            this.clearFilterToolStripMenuItem.Name = "clearFilterToolStripMenuItem";
+            resources.ApplyResources(this.clearFilterToolStripMenuItem, "clearFilterToolStripMenuItem");
+            this.clearFilterToolStripMenuItem.Click += new System.EventHandler(this.clearFilterToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            resources.ApplyResources(this.toolStripMenuItem10, "toolStripMenuItem10");
             // 
             // MainForm
             // 
@@ -706,6 +729,9 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeSingleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearFilterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
     }
 }
 

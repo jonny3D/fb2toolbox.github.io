@@ -12,20 +12,53 @@ namespace FB2Toolbox
     {
         private bool init = false;
 
-        public ChangeProperties()
+        public ChangeProperties(FileProperties filter = null)
         {
             InitializeComponent();
+
             List<GenreSubstitutionElement> genres = new List<GenreSubstitutionElement>();
             foreach(GenreSubstitutionElement el in FB2Config.Current.GenreSubstitutions)
             {
                 genres.Add(el);
                 genres.Sort();
             }
+            if (filter != null) bookGenreText.Items.Add("");
             foreach (GenreSubstitutionElement el in genres)
             {
                 bookGenreText.Items.Add(el);
             }
+
             init = true;
+
+            if (filter != null)
+            {
+                Text = "Фильтр по метаданным";
+                buttonUpdate.Text = "Фильтровать";
+
+                authorFirstNameCheck.Visible = false;
+                authorMiddleNameCheck.Visible = false;
+                authorLastNameCheck.Visible = false;
+                bookSeriesCheck.Visible = false;
+                bookTitleCheck.Visible = false;
+                bookGenreCheck.Visible = false;
+                bookNumberCheck.Visible = false;
+
+                if (filter.AuthorFirstNameChange) authorFirstNameText.Text = filter.AuthorFirstName;
+                if (filter.AuthorMiddleNameChange) authorMiddleNameText.Text = filter.AuthorMiddleName;
+                if (filter.AuthorLastNameChange) authorLastNameText.Text = filter.AuthorLastName;
+                if (filter.GengeChange)
+                    for(var i=1; i<bookGenreText.Items.Count; i++)
+                    {
+                        var item = bookGenreText.Items[i] as GenreSubstitutionElement;
+                        if (item.From == filter.Genre) {
+                            bookGenreText.SelectedIndex = i;
+                            break;
+                        }
+                    };
+                if (filter.SeriesChange) bookSeriesText.Text = filter.Series;
+                if (filter.NumberChange) bookNumberText.Text = filter.Number;
+                if (filter.TitleChange) bookTitleText.Text = filter.Title;
+            }
         }
         public void LoadFileProperties(FB2File info, int filesCount)
         {
@@ -76,7 +109,14 @@ namespace FB2Toolbox
             {
                 fp.GengeChange = bookGenreCheck.Checked;
                 if (fp.GengeChange)
-                    fp.Genre = (bookGenreText.SelectedItem as GenreSubstitutionElement).From;
+                {
+                    var g = bookGenreText.SelectedItem as GenreSubstitutionElement;
+                    if (g != null)
+                    {
+                        fp.Genre = g.From;
+                        fp.GenreTitle = g.To;
+                    }
+                }
             }
             return fp;
         }

@@ -14,9 +14,12 @@ namespace FB2Toolbox
     {
         #region Private
         private bool inProgress_Value = false;
+        private FileProperties itemsFilter = null;
         private Dictionary<string, string> _loadedFileIDs = new Dictionary<string, string>();
-        private int _selectedCount = 0;
+        // private int _selectedCount = 0;
+        private readonly List<ListViewItem> _itemsCache = new List<ListViewItem>();
         #endregion
+
         public MainForm()
         {
             InitializeComponent();
@@ -37,16 +40,18 @@ namespace FB2Toolbox
                 return _loadedFileIDs;
             }
         }
+        private List<ListViewItem> ItemsCache
+        {
+            get
+            {
+                return _itemsCache;
+            }
+        }
         private int SelectedCount
         {
             get
             {
-                return _selectedCount;
-            }
-            set
-            {
-                _selectedCount = value;
-                CheckMenus();
+                return filesView.CheckedItems.Count;
             }
         }
         private bool IsCancel { get; set; }
@@ -319,6 +324,8 @@ namespace FB2Toolbox
                     if (!fc.IsValid)
                         AddMessageRN(lvi.ToolTipText);
                     filesView.Items.Add(lvi);
+                    ItemsCache.Add(lvi);
+                    AddMessage(String.Format(Properties.Resources.ProgressFileLoaded + "\r\n", key));
                 }
             }
             filesView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -329,16 +336,16 @@ namespace FB2Toolbox
         {
             filesView.BeginUpdate();
             filesView.Items.Clear();
+            ItemsCache.Clear();
             filesView.Groups.Clear();
             filesView.EndUpdate();
             messagesTextBox.Clear();
             LoadedFileIDs.Clear();
-            SelectedCount = 0;
             UpdateStatus();
         }
         private void CheckMenus()
         {
-            actionsToolStripMenuItem.Enabled = _selectedCount > 0;
+            actionsToolStripMenuItem.Enabled = SelectedCount > 0;
             clearFilesListMenuItem.Enabled = filesView.Items.Count > 0;
             checkAllToolStripMenuItem.Enabled = clearFilesListMenuItem.Enabled;
             uncheckAllToolStripMenuItem.Enabled = clearFilesListMenuItem.Enabled;
@@ -645,16 +652,13 @@ namespace FB2Toolbox
             }
             ListViewItem item = filesView.Items[e.Index];
             FB2File fb2 = item.Tag as FB2File;
-            if (e.NewValue == CheckState.Unchecked)
-                SelectedCount--;
             if (!fb2.IsValid)
                 e.NewValue = CheckState.Unchecked;
-            if (e.NewValue == CheckState.Checked)
-                SelectedCount++;
         }
         private void filesView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             UpdateStatus();
+            CheckMenus();
         }
         private void checkAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -676,7 +680,7 @@ namespace FB2Toolbox
                     {
                         System.Diagnostics.Process.Start(fc.FileInformation.FullName);
                     }
-                    catch
+                    catch (Exception ex)
                     {
                     }
             }
@@ -1176,9 +1180,10 @@ namespace FB2Toolbox
                 FB2File.RemoveFolder(new DirectoryInfo(path));
                 if (!File.Exists(fc.FileInformation.FullName))
                 {
-                    if (item.Checked) SelectedCount--;
                     filesView.Items.Remove(item);
+                    ItemsCache.Remove(item);
                     LoadedFileIDs.Remove(fc.FileInformation.FullName);
+                    CheckMenus();
                 }
             }
         }
@@ -1192,10 +1197,11 @@ namespace FB2Toolbox
                     return;
                 if (fc != null)
                 {
-                    if (filesView.FocusedItem.Checked) SelectedCount--;
                     filesView.Items.Remove(filesView.FocusedItem);
+                    ItemsCache.Remove(filesView.FocusedItem);
                     LoadedFileIDs.Remove(fc.FileInformation.FullName);
                 }
+                CheckMenus();
             }
         }
 
@@ -1207,12 +1213,113 @@ namespace FB2Toolbox
                 foreach (ListViewItem item in filesView.CheckedItems)
                 {
                     FB2File fc = item.Tag as FB2File;
-                    if (item.Checked) SelectedCount--;
                     filesView.Items.Remove(item);
+                    ItemsCache.Remove(item);
                     LoadedFileIDs.Remove(fc.FileInformation.FullName);
+                    CheckMenus();
                 }
                 InProgress = false;
             }
+        }
+
+        private void filterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (itemsFilter == null) itemsFilter = new FileProperties();
+            var dialog = new ChangeProperties(itemsFilter);
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                itemsFilter = dialog.GetFileProperties();
+                if (itemsFilter.AuthorFirstNameChange && itemsFilter.AuthorFirstName.Trim() == string.Empty) itemsFilter.AuthorFirstNameChange = false;
+                if (itemsFilter.AuthorMiddleNameChange && itemsFilter.AuthorMiddleName.Trim() == string.Empty) itemsFilter.AuthorMiddleNameChange = false;
+                if (itemsFilter.AuthorLastNameChange && itemsFilter.AuthorLastName.Trim() == string.Empty) itemsFilter.AuthorLastNameChange = false;
+                if (itemsFilter.GengeChange && itemsFilter.Genre == null || itemsFilter.GengeChange && itemsFilter.Genre.Trim() == string.Empty) itemsFilter.GengeChange = false;
+                if (itemsFilter.SeriesChange && itemsFilter.Series.Trim() == string.Empty) itemsFilter.SeriesChange = false;
+                if (itemsFilter.NumberChange && itemsFilter.Number.Trim() == string.Empty) itemsFilter.NumberChange = false;
+                if (itemsFilter.TitleChange && itemsFilter.Title.Trim() == string.Empty) itemsFilter.TitleChange= false;
+
+                if (!itemsFilter.AuthorFirstNameChange
+                    && !itemsFilter.AuthorMiddleNameChange
+                    && !itemsFilter.AuthorLastNameChange
+                    && !itemsFilter.GengeChange
+                    && !itemsFilter.SeriesChange
+                    && !itemsFilter.NumberChange
+                    && !itemsFilter.TitleChange)
+                {
+                    clearFilterToolStripMenuItem_Click(sender, e);
+                    return;
+                }
+
+                var filteredItems = ItemsCache.Where(item =>
+                {
+                    var fb2 = item.Tag as FB2File;
+                    var result = false;
+                    var result2 = false;
+                    var first = true;
+                    if (itemsFilter.AuthorFirstNameChange)
+                    {
+                        result = fb2.BookAuthorFirstName.ToLower().IndexOf(itemsFilter.AuthorFirstName.ToLower()) >= 0;
+                        result2 = (first || result2) && result;
+                        first = false;
+                    }
+                    if (itemsFilter.AuthorMiddleNameChange)
+                    {
+                        result = fb2.BookAuthorMiddleName.ToLower().IndexOf(itemsFilter.AuthorMiddleName.ToLower()) >= 0;
+                        result2 = (first || result2) && result;
+                        first = false;
+                    }
+                    if (itemsFilter.AuthorLastNameChange)
+                    {
+                        result = fb2.BookAuthorLastName.ToLower().IndexOf(itemsFilter.AuthorLastName.ToLower()) >= 0;
+                        result2 = (first || result2) && result;
+                        first = false;
+                    }
+                    if (itemsFilter.GengeChange)
+                    {
+                        result = fb2.BookGenre.ToLower() == itemsFilter.GenreTitle.ToLower();
+                        result2 = (first || result2) && result;
+                        first = false;
+                    }
+                    if (itemsFilter.SeriesChange)
+                    {
+                        result = fb2.BookSequenceName.ToLower().IndexOf(itemsFilter.Series.ToLower()) >= 0;
+                        result2 = (first || result2) && result;
+                        first = false;
+                    }
+                    if (itemsFilter.TitleChange)
+                    {
+                        result = fb2.BookTitle.ToLower().IndexOf(itemsFilter.Title.ToLower()) >= 0;
+                        result2 = (first || result2) && result;
+                        first = false;
+                    }
+                    return result2;
+                });
+                filesView.BeginUpdate();
+                var items = filteredItems.ToArray();
+                filesView.Items.Clear();
+                filesView.Groups.Clear();
+                if (items.Length > 0) filesView.Items.AddRange(items);
+                foreach (ListViewItem item in filesView.Items) UpdateGroup(item);
+                UpdateStatus();
+                filesView.EndUpdate();
+                filterToolStripMenuItem.Checked = true;
+            }
+        }
+
+        private void clearFilterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            filesView.BeginUpdate();
+            filesView.Items.Clear();
+            filesView.Groups.Clear();
+            filesView.Items.AddRange(ItemsCache.ToArray());
+            foreach (ListViewItem item in filesView.Items) {
+                UpdateGroup(item);
+                //item.Checked = false;
+            }
+            //SelectedCount = 0;
+            UpdateStatus();
+            filesView.EndUpdate();
+            itemsFilter = null;
+            filterToolStripMenuItem.Checked = false;
         }
     }
 }

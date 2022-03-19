@@ -195,6 +195,7 @@ namespace FB2Toolbox
         public string AuthorMiddleName { get; set; }
         public bool GengeChange { get; set; }
         public string Genre { get; set; }
+        public string GenreTitle { get; set; }
         public bool SeriesChange { get; set; }
         public string Series { get; set; }
         public bool NumberChange { get; set; }
@@ -465,12 +466,12 @@ namespace FB2Toolbox
                                 string tmp = reader.GetAttribute("number");
                                 try
                                 {
-                                    int tmpi = Int32.Parse(tmp);
+                                    int tmpi = tmp != null && tmp.Trim() != string.Empty ? Int32.Parse(tmp) : 0;
                                     if ((tmpi > 0) && !string.IsNullOrEmpty(bookSequenceName))
                                         AddMetadata(DescriptionElements.SequenceNr, Convert.ToString(tmpi));
                                 }
-                                catch
-                                {
+                                catch (Exception ex)
+                        {
                                 }
                             }
                             else
@@ -604,7 +605,7 @@ namespace FB2Toolbox
                     Encoding enc = Encoding.GetEncoding(encoding);
                     BookEncoding = enc.EncodingName;
                 }
-                catch
+                catch (Exception ex)
                 {
                 }
             }
@@ -713,7 +714,7 @@ namespace FB2Toolbox
                 UpdateFileInfo(FileInformation.FullName);
                 ParseFile(FileInformation.FullName);
             }
-            catch
+            catch (Exception ex)
             {
             }
         }
@@ -781,7 +782,7 @@ namespace FB2Toolbox
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
             }
         }
@@ -895,7 +896,7 @@ namespace FB2Toolbox
             Directory.CreateDirectory(newPath);
             DirectoryInfo di = FileInformation.Directory;
             FileOperationResult result = new FileOperationResult() { NewFileName = newFileName, NewFullName = newFullName };
-            result.Skipped = FileInformation.FullName == newFullName || IsSkipFile(newFullName, newFileName);
+            result.Skipped = FileInformation.FullName.ToLower() == newFullName.ToLower() || IsSkipFile(newFullName, newFileName);
 
             if (!result.Skipped)
             {
