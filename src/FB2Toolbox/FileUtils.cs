@@ -679,15 +679,15 @@ namespace FB2Toolbox
         private void Validate()
         {
             _errors = String.Empty;
-            _isValid = (!String.IsNullOrEmpty(BookTitle)) && (!String.IsNullOrEmpty(BookAuthorLastName)) && (!String.IsNullOrEmpty(BookGenre));
+            _isValid = (!String.IsNullOrEmpty(BookTitle)) /*&& (!String.IsNullOrEmpty(BookAuthorLastName))*/ && (!String.IsNullOrEmpty(BookGenre));
             if (!IsValid)
             {
                 if (String.IsNullOrEmpty(BookGenre))
                     _errors += Properties.Resources.ParseFileErrorNoBookGenre + " ";
                 if (String.IsNullOrEmpty(BookTitle))
                     _errors += Properties.Resources.ParseFileErrorNoBookTitle + " ";
-                if (String.IsNullOrEmpty(BookAuthorLastName))
-                    _errors += Properties.Resources.ParseFileErrorNoAuthorLastName + " ";
+                /*if (String.IsNullOrEmpty(BookAuthorLastName))
+                    _errors += Properties.Resources.ParseFileErrorNoAuthorLastName + " ";*/
                 _errors = _errors.Trim();
             }
         }

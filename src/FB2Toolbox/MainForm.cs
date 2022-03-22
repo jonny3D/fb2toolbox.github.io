@@ -1064,24 +1064,35 @@ namespace FB2Toolbox
             string seq = string.Empty;
             switch(typeGroup)
             {
+                // Фамилия Имя
+                case 5:
+                    seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
+                    seq = String.IsNullOrEmpty(item.BookAuthorLastName) ? seq : item.BookAuthorLastName + (String.IsNullOrEmpty(item.BookAuthorFirstName) ? " "+ item.BookAuthorFirstName : "");
+
+                    return seq;
+                // Фамилия: Серия
                 case 0:
                     seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
                     seq = String.IsNullOrEmpty(item.BookAuthorLastName) ? seq : item.BookAuthorLastName + ": " + seq;
                     return seq;
+                // Фамилия: Название
                 case 1:
                     seq = item.BookTitle;
                     seq = String.IsNullOrEmpty(item.BookAuthorLastName) ? seq : item.BookAuthorLastName + ": " + seq;
                     return seq;
+                // Серия
+                case 4:
+                    seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
+                    return seq;
+                // Серия: Фамилия
                 case 2:
                     seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
                     seq = String.IsNullOrEmpty(item.BookAuthorLastName) ? seq : seq + ": " + item.BookAuthorLastName;
                     return seq;
+                // Серия: Название
                 case 3:
                     seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
                     seq = seq + ": " + item.BookTitle;
-                    return seq;
-                case 4:
-                    seq = String.IsNullOrEmpty(item.BookSequenceName) ? Properties.Resources.DisplayNoSerie : item.BookSequenceName;
                     return seq;
             }
             return seq;
@@ -1090,16 +1101,19 @@ namespace FB2Toolbox
         private int GetGroupType()
         {
             object o = 0;
-            if (view1ToolStripMenuItem.CheckState == CheckState.Checked)
-                o = view1ToolStripMenuItem.Tag;
-            if (view2ToolStripMenuItem.CheckState == CheckState.Checked)
-                o = view2ToolStripMenuItem.Tag;
-            if (view3ToolStripMenuItem.CheckState == CheckState.Checked)
-                o = view3ToolStripMenuItem.Tag;
-            if (view4ToolStripMenuItem.CheckState == CheckState.Checked)
-                o = view4ToolStripMenuItem.Tag;
-            if (view5ToolStripMenuItem.CheckState == CheckState.Checked)
-                o = view5ToolStripMenuItem.Tag;
+            List<ToolStripMenuItem> toolItems = new List<ToolStripMenuItem>() {
+                view1ToolStripMenuItem,
+                view2ToolStripMenuItem,
+                view3ToolStripMenuItem,
+                view4ToolStripMenuItem,
+                view5ToolStripMenuItem,
+                view6ToolStripMenuItem
+            };
+            foreach (ToolStripMenuItem toolItem in toolItems)
+            {
+                if (toolItem.CheckState == CheckState.Checked)
+                    o = toolItem.Tag;
+            }
             return Convert.ToInt32(o);
         }
 
@@ -1117,30 +1131,26 @@ namespace FB2Toolbox
         private void view1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var groupType = Convert.ToInt32((sender as ToolStripMenuItem).Tag);
-
-            view1ToolStripMenuItem.CheckState = CheckState.Unchecked;
-            view2ToolStripMenuItem.CheckState = CheckState.Unchecked;
-            view3ToolStripMenuItem.CheckState = CheckState.Unchecked;
-            view4ToolStripMenuItem.CheckState = CheckState.Unchecked;
-            view5ToolStripMenuItem.CheckState = CheckState.Unchecked;
-            if (Convert.ToInt32(view1ToolStripMenuItem.Tag) == groupType)
-                view1ToolStripMenuItem.CheckState = CheckState.Checked;
-            if (Convert.ToInt32(view2ToolStripMenuItem.Tag) == groupType)
-                view2ToolStripMenuItem.CheckState = CheckState.Checked;
-            if (Convert.ToInt32(view3ToolStripMenuItem.Tag) == groupType)
-                view3ToolStripMenuItem.CheckState = CheckState.Checked;
-            if (Convert.ToInt32(view4ToolStripMenuItem.Tag) == groupType)
-                view4ToolStripMenuItem.CheckState = CheckState.Checked;
-            if (Convert.ToInt32(view5ToolStripMenuItem.Tag) == groupType)
-                view5ToolStripMenuItem.CheckState = CheckState.Checked;
-
+            List<ToolStripMenuItem> toolItems = new List<ToolStripMenuItem>() { 
+                view1ToolStripMenuItem, 
+                view2ToolStripMenuItem, 
+                view3ToolStripMenuItem, 
+                view4ToolStripMenuItem, 
+                view5ToolStripMenuItem, 
+                view6ToolStripMenuItem
+            };
+            foreach (ToolStripMenuItem toolItem in toolItems)
+            {
+                toolItem.CheckState = CheckState.Unchecked;
+                if (Convert.ToInt32(toolItem.Tag) == groupType)
+                    toolItem.CheckState = CheckState.Checked;
+            }
             filesView.BeginUpdate();
             filesView.Groups.Clear();
             foreach (ListViewItem item in filesView.Items)
             {
                 UpdateGroup(item);
             }
-
             filesView.EndUpdate();
         }
 

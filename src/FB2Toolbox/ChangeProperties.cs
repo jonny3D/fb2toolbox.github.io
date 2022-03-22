@@ -117,7 +117,7 @@ namespace FB2Toolbox
                         fp.GenreTitle = g.To;
                     }
                 }
-            }
+             }
             return fp;
         }
 

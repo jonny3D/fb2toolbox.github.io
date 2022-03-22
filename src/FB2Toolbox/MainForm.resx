@@ -278,7 +278,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABu
-        DQAAAk1TRnQBSQFMAgEBAwEAATwBAgE8AQIBEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        DQAAAk1TRnQBSQFMAgEBAwEAAUQBAgFEAQIBEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABEAMAAQEBAAEYBgABDCcAA/gD7wLkAeMB2QHYAdYB1wHWAdQD+QP+GAAD/QP6A/IC6AHnAd4B3QHb
         Ad4B3AHaA/wMAAP/A94CrgGtAbACrwPIA/xLAAL6AfkB5AHgAdkBywHHAb8ByQHCAbYB1AHMAbkB6AHd
         AcMB/gHxAdIB/gHyAdMB/wHyAdMB/gHzAdQB/wHyAdUB/wH7Ad0BxQG9AbID4gP8AwAC+gH5AewB5wHf
@@ -634,6 +634,12 @@
   </data>
   <data name="otherToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Прочее</value>
+  </data>
+  <data name="view6ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="view6ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Фамилия Имя</value>
   </data>
   <data name="view1ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 22</value>
@@ -2094,6 +2100,24 @@
   <data name="&gt;&gt;toolStripMenuItem4.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;filterToolStripMenuItem.Name" xml:space="preserve">
+    <value>filterToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;filterToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;clearFilterToolStripMenuItem.Name" xml:space="preserve">
+    <value>clearFilterToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;clearFilterToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem10.Name" xml:space="preserve">
+    <value>toolStripMenuItem10</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;checkAllToolStripMenuItem.Name" xml:space="preserve">
     <value>checkAllToolStripMenuItem</value>
   </data>
@@ -2292,23 +2316,11 @@
   <data name="&gt;&gt;folderBrowserDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;filterToolStripMenuItem.Name" xml:space="preserve">
-    <value>filterToolStripMenuItem</value>
+  <data name="&gt;&gt;view6ToolStripMenuItem.Name" xml:space="preserve">
+    <value>view6ToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;filterToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;view6ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;clearFilterToolStripMenuItem.Name" xml:space="preserve">
-    <value>clearFilterToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;clearFilterToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem10.Name" xml:space="preserve">
-    <value>toolStripMenuItem10</value>
-  </data>
-  <data name="&gt;&gt;toolStripMenuItem10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
