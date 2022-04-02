@@ -7,6 +7,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Xml;
 using System.Linq;
+using System.Collections;
 
 namespace FB2Toolbox
 {
@@ -212,18 +213,77 @@ namespace FB2Toolbox
             return containers;
         }
 
+        private bool _dragStarted = false;
+        private int _dragX = -1;
+        private int _dragY = -1;
+        private void filesView_MouseDown(object sender, MouseEventArgs e)
+        {
+            _dragX = MousePosition.X;
+            _dragY = MousePosition.Y;
+        }
+
+        private void filesView_MouseUp(object sender, MouseEventArgs e)
+        {
+            _dragStarted = false;
+            _dragX = -1;
+            _dragY = -1;
+            Cursor = Cursors.Default;
+        }
+
+        private void filesView_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_dragX < 0 || _dragY < 0)
+                return;
+
+            if (!_dragStarted && Math.Sqrt((_dragX - MousePosition.X) * (_dragX - MousePosition.X) + (_dragY - MousePosition.Y) * (_dragY - MousePosition.Y)) > 100)
+            {
+                _dragStarted = true;
+                StartDragFiles();
+            }
+        }
+
+        private void filesView_MouseLeave(object sender, EventArgs e)
+        {
+            if (!_dragStarted)
+                return;
+
+            _dragStarted = true;
+            StartDragFiles();
+        }
+
+        private void StartDragFiles()
+        {
+            var items = filesView.CheckedItems.Count > 0 ? filesView.CheckedItems : (filesView.SelectedItems.Count > 0 ? (IList)filesView.SelectedItems : null);
+            if (items == null || items.Count == 0)
+            {
+                return;
+            }
+
+            var files = new List<string>();
+            foreach (ListViewItem item in items)
+            {
+                files.Add(((FB2File)item.Tag).FileInformation.FullName);
+            }
+
+            this.DoDragDrop(new DataObject(DataFormats.FileDrop, files.ToArray()), DragDropEffects.Copy);
+
+        }
+
         private void filesView_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (!_dragStarted && e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.Copy;
         }
 
         private void filesView_DragDrop(object sender, DragEventArgs e)
         {
+            if (_dragStarted)
+                return;
+
             var _list = (string[])e.Data.GetData(DataFormats.FileDrop);
             var _files = new List<string>();
-            var _dirs= new List<string>();
-            if (filesView.Items.Count > 0 && MessageBox.Show(Properties.Resources.ConfirmationClearFileList, Properties.Resources.ConfirmationCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            var _dirs = new List<string>();
+            if (filesView.Items.Count > 0 && MessageBox.Show(Properties.Resources.ConfirmationClearFileList, Properties.Resources.ConfirmationCaption, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
                 ClearLists();
             foreach (var fi in _list)
             {
@@ -548,7 +608,13 @@ namespace FB2Toolbox
                 commandString = String.Format(command.Arguments, fc.FileInformation.FullName);
                 startInfo.Arguments = commandString;
 
-                if (startInfo.FileName.IndexOf("\\") < 0 && startInfo.FileName.IndexOf("/") < 0)
+                if (string.IsNullOrEmpty(startInfo.FileName) || startInfo.FileName.Trim() == "")
+                {
+                    AddMessageRN(String.Format(Properties.Resources.ExecuteCommandErrorEmpty, command.FileName));
+                    return;
+                }
+
+                if (!startInfo.FileName.StartsWith("/") && startInfo.FileName.Substring(1, 2) != ":\\")
                 {
                     var enviromentPath = System.Environment.GetEnvironmentVariable("PATH");
                     var paths = enviromentPath.Split(';');

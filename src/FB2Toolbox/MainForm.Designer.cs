@@ -93,6 +93,7 @@
             this.renameAllZIPTofFB2ZIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createGuidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.view6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.view1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.view2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.view5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,7 +105,6 @@
             this.statusSelectedFilesLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.view6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplitContainer)).BeginInit();
             this.mainSplitContainer.Panel1.SuspendLayout();
             this.mainSplitContainer.Panel2.SuspendLayout();
@@ -160,6 +160,10 @@
             this.filesView.DragDrop += new System.Windows.Forms.DragEventHandler(this.filesView_DragDrop);
             this.filesView.DragEnter += new System.Windows.Forms.DragEventHandler(this.filesView_DragEnter);
             this.filesView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.messagesTextBox_KeyUp);
+            this.filesView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.filesView_MouseDown);
+            this.filesView.MouseLeave += new System.EventHandler(this.filesView_MouseLeave);
+            this.filesView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.filesView_MouseMove);
+            this.filesView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.filesView_MouseUp);
             // 
             // columnBookTitle
             // 
@@ -553,6 +557,13 @@
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             resources.ApplyResources(this.viewToolStripMenuItem, "viewToolStripMenuItem");
             // 
+            // view6ToolStripMenuItem
+            // 
+            this.view6ToolStripMenuItem.Name = "view6ToolStripMenuItem";
+            resources.ApplyResources(this.view6ToolStripMenuItem, "view6ToolStripMenuItem");
+            this.view6ToolStripMenuItem.Tag = "5";
+            this.view6ToolStripMenuItem.Click += new System.EventHandler(this.view1ToolStripMenuItem_Click);
+            // 
             // view1ToolStripMenuItem
             // 
             this.view1ToolStripMenuItem.Checked = true;
@@ -630,13 +641,6 @@
             // folderBrowserDialog
             // 
             resources.ApplyResources(this.folderBrowserDialog, "folderBrowserDialog");
-            // 
-            // view6ToolStripMenuItem
-            // 
-            this.view6ToolStripMenuItem.Name = "view6ToolStripMenuItem";
-            resources.ApplyResources(this.view6ToolStripMenuItem, "view6ToolStripMenuItem");
-            this.view6ToolStripMenuItem.Tag = "5";
-            this.view6ToolStripMenuItem.Click += new System.EventHandler(this.view1ToolStripMenuItem_Click);
             // 
             // MainForm
             // 

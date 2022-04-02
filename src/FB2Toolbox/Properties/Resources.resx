@@ -339,4 +339,7 @@
   <data name="ConfirmationRemoveFile" xml:space="preserve">
     <value>Вы уверены что хотите скрыть файл '{0}'?</value>
   </data>
+  <data name="ExecuteCommandErrorEmpty" xml:space="preserve">
+    <value>Ошибка выполнения команды '{0}' - пустая строка</value>
+  </data>
 </root>

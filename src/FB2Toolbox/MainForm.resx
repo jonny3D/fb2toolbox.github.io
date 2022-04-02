@@ -278,7 +278,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABu
-        DQAAAk1TRnQBSQFMAgEBAwEAAUQBAgFEAQIBEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        DQAAAk1TRnQBSQFMAgEBAwEAAVwBAgFcAQIBEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABEAMAAQEBAAEYBgABDCcAA/gD7wLkAeMB2QHYAdYB1wHWAdQD+QP+GAAD/QP6A/IC6AHnAd4B3QHb
         Ad4B3AHaA/wMAAP/A94CrgGtAbACrwPIA/xLAAL6AfkB5AHgAdkBywHHAb8ByQHCAbYB1AHMAbkB6AHd
         AcMB/gHxAdIB/gHyAdMB/wHyAdMB/gHzAdQB/wHyAdUB/wH7Ad0BxQG9AbID4gP8AwAC+gH5AewB5wHf
@@ -2256,6 +2256,12 @@
   <data name="&gt;&gt;viewToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;view6ToolStripMenuItem.Name" xml:space="preserve">
+    <value>view6ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;view6ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;view1ToolStripMenuItem.Name" xml:space="preserve">
     <value>view1ToolStripMenuItem</value>
   </data>
@@ -2315,12 +2321,6 @@
   </data>
   <data name="&gt;&gt;folderBrowserDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;view6ToolStripMenuItem.Name" xml:space="preserve">
-    <value>view6ToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;view6ToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
