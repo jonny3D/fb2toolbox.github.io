@@ -21,6 +21,7 @@ namespace FB2Toolbox
         private readonly List<ListViewItem> _itemsCache = new List<ListViewItem>();
         #endregion
 
+        private string _ver;
         public MainForm()
         {
             InitializeComponent();
@@ -28,11 +29,41 @@ namespace FB2Toolbox
 
             IsCancel = false;
             InProgress = false;
+
             Version v = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            if (v.Build > 0)
-                Text = string.Format("{0} (v{1}.{2}.{3})", Text, v.Major, v.Minor, v.Build);
-            else
-                Text = string.Format("{0} (v{1}.{2})", Text, v.Major, v.Minor);
+            _ver = String.Format("(v{0}.{1}{2})", v.Major, v.Minor, v.Build > 0 ? "." + v.Build : "");
+            SetApplicationTitle();
+        }
+        private string _rootPath = "";
+        private void SetApplicationTitle(string path = "")
+        {
+            if (path != String.Empty)
+            {
+                if (_rootPath == "")
+                    _rootPath = path;
+                else {
+                    if (_rootPath.Length > path.Length || path.Substring(0, _rootPath.Length) != _rootPath)
+                    {
+                        var fPath = path.Split(Path.DirectorySeparatorChar);
+                        var rPath = _rootPath.Split(Path.DirectorySeparatorChar);
+                        var result = new List<string>();
+                        var len = fPath.Length > rPath.Length ? rPath.Length : fPath.Length;
+                        for (var i = 0; i < len; i++)
+                        {
+                            if (fPath[i] == rPath[i])
+                                result.Add(fPath[i]);
+                            else
+                                break;
+                        }
+                        _rootPath = String.Join(Path.DirectorySeparatorChar.ToString(), result.ToArray());
+                    }
+                }
+            } else
+            {
+                _rootPath = "";
+            }
+            
+            Text = string.Format("{0} {1}{2}", Application.ProductName, _ver, _rootPath != "" ? ": " + _rootPath : "" );
         }
         private Dictionary<string, string> LoadedFileIDs
         {
@@ -116,8 +147,8 @@ namespace FB2Toolbox
         private void AddFiles(string[] files)
         {
             InProgress = true;
-            var _files = ImportFiles(files);
-            AddItemsToList(_files);
+            var fs = ImportFiles(files);
+            AddItemsToList(fs);
             InProgress = false;
             UpdateStatus();
         }
@@ -125,8 +156,10 @@ namespace FB2Toolbox
         private void AddDir(string dir, bool recursive)
         {
             InProgress = true;
-            var _files = ReadFolder(dir, recursive);
-            if (_files != null && _files.Count > 0) AddItemsToList(_files);
+            messagesTextBox.Enabled = false;
+            var fs = ReadFolder(dir, recursive);
+            if (fs != null && fs.Count > 0) AddItemsToList(fs);
+            messagesTextBox.Enabled = true;
             InProgress = false;
             UpdateStatus();
         }
@@ -177,8 +210,8 @@ namespace FB2Toolbox
                     DirectoryInfo[] directories = dirInfo.GetDirectories();
                     foreach (DirectoryInfo di in directories)
                     {
-                        List<FB2File> _result = ReadFolder(di.FullName, recursive);
-                        if (_result != null && _result.Count > 0) result.AddRange(_result);
+                        List<FB2File> r = ReadFolder(di.FullName, recursive);
+                        if (r != null && r.Count > 0) result.AddRange(r);
                     }
                 }
             }
@@ -290,8 +323,20 @@ namespace FB2Toolbox
                 if (File.Exists(fi)) _files.Add(fi);
                 else if (Directory.Exists(fi)) _dirs.Add(fi);
             }
-            if (_files.Count > 0) AddFiles(_files.ToArray());
-            if (_dirs.Count > 0) foreach (var dir in _dirs) AddDir(dir, true);
+            InProgress = true;
+            if (_files.Count > 0)
+            {
+                AddItemsToList(ImportFiles(_files.ToArray()));
+            }
+            if (_dirs.Count > 0)
+                foreach (var dir in _dirs)
+                {
+                    var fs = ReadFolder(dir, true);
+                    if (fs != null && fs.Count > 0) AddItemsToList(fs);
+                    if (IsCancel) break;
+                }
+            UpdateStatus();
+            InProgress = false;
         }
 
         #endregion
@@ -366,7 +411,7 @@ namespace FB2Toolbox
         private void AddItemsToList(List<FB2File> list)
         {
             UpdateStatus(String.Format(Properties.Resources.ParseFileListLoad, list.Count));
-            list.Sort();
+            // list.Sort();
             filesView.BeginUpdate();
             foreach (FB2File fc in list)
             {
@@ -386,9 +431,10 @@ namespace FB2Toolbox
                     filesView.Items.Add(lvi);
                     ItemsCache.Add(lvi);
                     AddMessage(String.Format(Properties.Resources.ProgressFileLoaded + "\r\n", key));
+                    SetApplicationTitle(fc.FileInformation.FullName);
                 }
             }
-            filesView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            // filesView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             filesView.EndUpdate();
             CheckMenus();
         }
@@ -402,6 +448,7 @@ namespace FB2Toolbox
             messagesTextBox.Clear();
             LoadedFileIDs.Clear();
             UpdateStatus();
+            SetApplicationTitle();
         }
         private void CheckMenus()
         {
@@ -723,8 +770,11 @@ namespace FB2Toolbox
         }
         private void filesView_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
-            UpdateStatus();
-            CheckMenus();
+            if (!InProgress)
+            {
+                UpdateStatus();
+                CheckMenus();
+            }
         }
         private void checkAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1233,6 +1283,7 @@ namespace FB2Toolbox
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CheckCheckedFilesItems();
             if (MessageBox.Show(String.Format(Properties.Resources.ConfirmationDelete, SelectedCount), Properties.Resources.ConfirmationCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 InProgress = true;
@@ -1243,6 +1294,17 @@ namespace FB2Toolbox
                         break;
                 }
                 InProgress = false;
+            }
+        }
+
+        private void CheckCheckedFilesItems()
+        {
+            if (filesView.CheckedItems.Count == 0 && filesView.SelectedItems.Count > 0)
+            {
+                foreach ( ListViewItem item in filesView.SelectedItems)
+                {
+                    item.Checked = true;
+                }
             }
         }
 

@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace FB2Toolbox
@@ -11,6 +7,7 @@ namespace FB2Toolbox
     public partial class ChangeProperties : Form
     {
         private bool init = false;
+        private bool searchMode = false;
 
         public ChangeProperties(FileProperties filter = null)
         {
@@ -33,7 +30,7 @@ namespace FB2Toolbox
             if (filter != null)
             {
                 Text = "Фильтр по метаданным";
-                buttonUpdate.Text = "Фильтровать";
+                buttonUpdate.Text = "Искать";
 
                 authorFirstNameCheck.Visible = false;
                 authorMiddleNameCheck.Visible = false;
@@ -59,6 +56,8 @@ namespace FB2Toolbox
                 if (filter.NumberChange) bookNumberText.Text = filter.Number;
                 if (filter.TitleChange) bookTitleText.Text = filter.Title;
             }
+
+            searchMode = filter != null;
         }
         public void LoadFileProperties(FB2File info, int filesCount)
         {
@@ -203,6 +202,11 @@ namespace FB2Toolbox
         {
             if (!init) return;
             bookTitleCheck.Checked = true;
+        }
+
+        private void ChangeProperties_Shown(object sender, EventArgs e)
+        {
+            if (searchMode) bookTitleText.Focus();
         }
     }
 }

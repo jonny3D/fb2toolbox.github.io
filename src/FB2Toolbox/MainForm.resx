@@ -138,6 +138,9 @@
   <data name="columnBookSequence.Text" xml:space="preserve">
     <value>Серия</value>
   </data>
+  <data name="columnBookSequence.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
   <data name="columnBookSequenceNr.Text" xml:space="preserve">
     <value>Номер в серии (Книга)</value>
   </data>
@@ -213,9 +216,6 @@
   <data name="removeSingleToolStripMenuItem.Text" xml:space="preserve">
     <value>Скрыть</value>
   </data>
-  <data name="deleteSingleToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Del</value>
-  </data>
   <data name="deleteSingleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 22</value>
   </data>
@@ -278,7 +278,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABu
-        DQAAAk1TRnQBSQFMAgEBAwEAAVwBAgFcAQIBEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        DQAAAk1TRnQBSQFMAgEBAwEAAZQBAgGUAQIBEAEAARABAAT/ARkBAAj/AUIBTQE2BwABNgMAASgDAAFA
         AwABEAMAAQEBAAEYBgABDCcAA/gD7wLkAeMB2QHYAdYB1wHWAdQD+QP+GAAD/QP6A/IC6AHnAd4B3QHb
         Ad4B3AHaA/wMAAP/A94CrgGtAbACrwPIA/xLAAL6AfkB5AHgAdkBywHHAb8ByQHCAbYB1AHMAbkB6AHd
         AcMB/gHxAdIB/gHyAdMB/wHyAdMB/gHzAdQB/wHyAdUB/wH7Ad0BxQG9AbID4gP8AwAC+gH5AewB5wHf
@@ -438,85 +438,82 @@
     <value>17, 17</value>
   </metadata>
   <data name="addFilesToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+O</value>
+    <value>CTRL+O</value>
   </data>
   <data name="addFilesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 22</value>
+    <value>288, 22</value>
   </data>
   <data name="addFilesToolStripMenuItem.Text" xml:space="preserve">
     <value>Добавить &amp;файлы...</value>
   </data>
   <data name="addFolderToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+L</value>
+    <value>CTRL+L</value>
   </data>
   <data name="addFolderToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 22</value>
+    <value>288, 22</value>
   </data>
   <data name="addFolderToolStripMenuItem.Text" xml:space="preserve">
     <value>Добавить &amp;каталог...</value>
   </data>
-  <data name="addFolderRecursiveToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+R</value>
-  </data>
   <data name="addFolderRecursiveToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 22</value>
+    <value>288, 22</value>
   </data>
   <data name="addFolderRecursiveToolStripMenuItem.Text" xml:space="preserve">
     <value>Добавить каталог (с подкаталогами)...</value>
   </data>
   <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 6</value>
+    <value>285, 6</value>
   </data>
   <data name="clearFilesListMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 22</value>
+    <value>288, 22</value>
   </data>
   <data name="clearFilesListMenuItem.Text" xml:space="preserve">
     <value>Очистить список файлов и протокол...</value>
   </data>
   <data name="clearLogOnlyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 22</value>
+    <value>288, 22</value>
   </data>
   <data name="clearLogOnlyToolStripMenuItem.Text" xml:space="preserve">
     <value>Очистить только протокол</value>
   </data>
   <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 6</value>
+    <value>285, 6</value>
   </data>
   <data name="filterToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+F</value>
+    <value>CTRL+F</value>
   </data>
   <data name="filterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 22</value>
+    <value>288, 22</value>
   </data>
   <data name="filterToolStripMenuItem.Text" xml:space="preserve">
     <value>Фильровать список...</value>
   </data>
   <data name="clearFilterToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+F</value>
+    <value>CTRL+SHIFT+F</value>
   </data>
   <data name="clearFilterToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 22</value>
+    <value>288, 22</value>
   </data>
   <data name="clearFilterToolStripMenuItem.Text" xml:space="preserve">
     <value>Очистить фильтр</value>
   </data>
   <data name="toolStripMenuItem10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 6</value>
+    <value>285, 6</value>
   </data>
   <data name="checkAllToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+A</value>
+    <value>CTRL+A</value>
   </data>
   <data name="checkAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 22</value>
+    <value>288, 22</value>
   </data>
   <data name="checkAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Отметить все</value>
   </data>
   <data name="uncheckAllToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+Shift+A</value>
+    <value>CTRL+SHIFT+A</value>
   </data>
   <data name="uncheckAllToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>325, 22</value>
+    <value>288, 22</value>
   </data>
   <data name="uncheckAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Снять все отметки</value>
@@ -528,82 +525,88 @@
     <value>&amp;Список</value>
   </data>
   <data name="encodeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>260, 22</value>
   </data>
   <data name="encodeToolStripMenuItem.Text" xml:space="preserve">
     <value>Перекодировать в</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
+    <value>257, 6</value>
   </data>
   <data name="copyToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>260, 22</value>
   </data>
   <data name="copyToToolStripMenuItem.Text" xml:space="preserve">
     <value>Копировать</value>
   </data>
   <data name="moveToToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>260, 22</value>
   </data>
   <data name="moveToToolStripMenuItem.Text" xml:space="preserve">
     <value>Переместить</value>
   </data>
   <data name="renameInPlaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>260, 22</value>
   </data>
   <data name="renameInPlaceToolStripMenuItem.Text" xml:space="preserve">
     <value>Переименовать на месте</value>
   </data>
   <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
+    <value>257, 6</value>
   </data>
   <data name="compressToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>260, 22</value>
   </data>
   <data name="compressToolStripMenuItem.Text" xml:space="preserve">
     <value>Архивировать...</value>
   </data>
   <data name="extractToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>260, 22</value>
   </data>
   <data name="extractToolStripMenuItem.Text" xml:space="preserve">
     <value>Распаковать...</value>
   </data>
   <data name="removeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>260, 22</value>
   </data>
   <data name="removeToolStripMenuItem.Text" xml:space="preserve">
     <value>Скрыть...</value>
   </data>
+  <data name="deleteToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>DELETE</value>
+  </data>
   <data name="deleteToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>260, 22</value>
   </data>
   <data name="deleteToolStripMenuItem.Text" xml:space="preserve">
     <value>Удалить...</value>
   </data>
   <data name="toolStripMenuItem8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
+    <value>257, 6</value>
+  </data>
+  <data name="toolStripEditBooks.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>CTRL+M</value>
   </data>
   <data name="toolStripEditBooks.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>260, 22</value>
   </data>
   <data name="toolStripEditBooks.Text" xml:space="preserve">
     <value>Изменить метаданные...</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
+    <value>257, 6</value>
   </data>
   <data name="validateToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>260, 22</value>
   </data>
   <data name="validateToolStripMenuItem.Text" xml:space="preserve">
     <value>Тестировать...</value>
   </data>
   <data name="toolStripMenuItem7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
+    <value>257, 6</value>
   </data>
   <data name="commandsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 22</value>
+    <value>260, 22</value>
   </data>
   <data name="commandsToolStripMenuItem.Text" xml:space="preserve">
     <value>Команды</value>
